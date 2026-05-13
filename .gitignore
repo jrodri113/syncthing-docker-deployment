@@ -1,0 +1,12 @@
+# Ignorar carpetas de datos y configuración de contenedores
+config/
+syncthing/
+
+   # Ignorar cualquier certificado o llave por si acaso
+   *.pem
+   *.lock
+
+   # Ignorar bases de datos locales
+   *.db
+   *.db-shm
+   *.db-wal
