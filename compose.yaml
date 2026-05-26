@@ -2,14 +2,14 @@ services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
-    hostname: debian-desktop # El nombre que verá tu teléfono
+    hostname: your_SO-desktop # El nombre que verá tu teléfono
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York
+      - Your_Wifi_Name=Country/City
     volumes:
       - ./config:/config
-      - /home/jrodri/Respaldos_Telefono:/data1
+      - /home/user/backup_folder/data1
     ports:
       - 8384:8384
       - 22000:22000/tcp
