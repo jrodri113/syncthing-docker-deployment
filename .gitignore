@@ -14,3 +14,7 @@ syncthing/
 *.db-shm
 *.db-wal
 
+# Documentación personal local
+/GITHUB.md
+
+
