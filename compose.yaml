@@ -2,17 +2,25 @@ services:
   syncthing:
     image: lscr.io/linuxserver/syncthing:latest
     container_name: syncthing
-    hostname: your_SO-desktop # El nombre que verá tu teléfono
+    hostname: ${SYNCTHING_HOSTNAME:-syncthing-node}
     environment:
-      - PUID=1000
-      - PGID=1000
-      - Your_Wifi_Name=Country/City
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
     volumes:
       - ./config:/config
-      - /home/user/backup_folder/data1
+      # Directorio de sincronización parametrizado mediante variable de entorno.
+      # Por defecto crea una carpeta local './data' si no se especifica.
+      - ${SYNCTHING_DATA_DIR:-./data}:/data1
     ports:
-      - 8384:8384
+      # Interfaz Web de administración.
+      # SEGURIDAD: Por defecto se enlaza a 127.0.0.1 para evitar exposición externa sin autenticación.
+      # Cambiar a "8384:8384" si se requiere configurar el nodo desde otros dispositivos locales.
+      - 127.0.0.1:8384:8384
+      # Puerto para el protocolo de sincronización de datos (TCP y UDP)
       - 22000:22000/tcp
       - 22000:22000/udp
+      # Puerto para descubrimiento local de dispositivos en red (UDP broadcast)
       - 21027:21027/udp
     restart: unless-stopped
+

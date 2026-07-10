@@ -1,12 +1,16 @@
-# Ignorar carpetas de datos y configuración de contenedores
+# Carpetas de datos y configuración locales de contenedores
 config/
 syncthing/
 
-   # Ignorar cualquier certificado o llave por si acaso
-   *.pem
-   *.lock
+# Archivos de entorno local (contienen rutas y configuraciones locales)
+.env
 
-   # Ignorar bases de datos locales
-   *.db
-   *.db-shm
-   *.db-wal
+# Certificados y llaves criptográficas generados en tiempo de ejecución
+*.pem
+*.lock
+
+# Bases de datos y archivos de estado locales
+*.db
+*.db-shm
+*.db-wal
+
